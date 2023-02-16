@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "6debb675-c99f-45e7-8282-9f3c2313726b",
+		"name": "Requisições da API de Matemática",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25754970"
+	},
+	"item": [
+		{
+			"name": "Retornar o número PI",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('deve retornar a constante grega irracional PI', () => {\r",
+							"    let { pi } = pm.response.json();\r",
+							"    pm.expect(Number(pi).toFixed(5)).to.be.equal('3.14159');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pi",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Somar dois números",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('deve somar corretamente dois números', () => {\r",
+							"    const { soma } = pm.response.json();\r",
+							"    const numero1 = pm.collectionVariables.get('numero1');\r",
+							"    const numero2 = pm.collectionVariables.get('numero2');\r",
+							"    pm.expect(soma).to.equal(numero1 + numero2);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set('numero1', 0.2);\r",
+							"pm.collectionVariables.set('numero2', 0.1);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/soma/{{numero1}}/{{numero2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"soma",
+						"{{numero1}}",
+						"{{numero2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dividir dois números",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.collectionVariables.set('numero1', 8);\r",
+							"pm.collectionVariables.set('numero2', 2);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('deve dividir corretamente dois números', () => {\r",
+							"    const { divisao } = pm.response.json();\r",
+							"    const n1 = pm.collectionVariables.get('numero1');\r",
+							"    const n2 = pm.collectionVariables.get('numero2');\r",
+							"    const resultadoEsperado = n1 / n2;\r",
+							"    pm.expect(divisao).to.equal(resultadoEsperado);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/divisao?numero1={{numero1}}&numero2={{numero2}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"divisao"
+					],
+					"query": [
+						{
+							"key": "numero1",
+							"value": "{{numero1}}"
+						},
+						{
+							"key": "numero2",
+							"value": "{{numero2}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Dividir um número por zero",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('não deve permitir divisão com denominador igual a zero', () => {\r",
+							"    const { mensagem } = pm.response.json();\r",
+							"    pm.response.to.have(400);\r",
+							"    pm.expect(mensagem).to.equal('Divisor não pode ser zero');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/divisao?numero=1&numero2=0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"divisao"
+					],
+					"query": [
+						{
+							"key": "numero",
+							"value": "1"
+						},
+						{
+							"key": "numero2",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3001",
+			"type": "string"
+		},
+		{
+			"key": "numero1",
+			"value": ""
+		},
+		{
+			"key": "numero2",
+			"value": ""
+		}
+	]
+}
