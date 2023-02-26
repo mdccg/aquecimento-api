@@ -25,6 +25,7 @@ As seguintes tecnologias foram utilizadas para desenvolver este app:
 |-|-|
 | Ambiente de execução | [Node](https://nodejs.org/en/) |
 | Linguagem de programação | [TypeScript](https://www.typescriptlang.org/) |
+| Back-end | [Express.js](https://expressjs.com/pt-br/) |
 | Framework de teste | [Postman](https://www.postman.com/) |
 
 ## Galeria
