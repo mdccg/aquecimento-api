@@ -73,4 +73,4 @@ $ yarn dev
 
 5. Abra o Postman e importe o arquivo de coleção Postman [`matematica.postman_collection.json`](./matematica.postman_collection.json) para executar os testes unitários dos serviços de consulta;
 
-Como alternativa ao Postman, você pode instalar as dependências globais [`newman`](https://npmjs.com/package/newman) e [`newman-reporter-htmlextra`](https://npmjs.com/package/newman-reporter-htmlextra) para gerar relatórios via interface linha de comando e interface visual, respectivamente.
+Como alternativa ao Postman, você pode instalar as dependências globais [`newman`](https://npmjs.com/package/newman) e [`newman-reporter-htmlextra`](https://npmjs.com/package/newman-reporter-htmlextra) para gerar relatórios via interface linha de comando e interface gráfica do usuário, respectivamente.
